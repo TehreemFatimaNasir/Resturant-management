@@ -1,0 +1,112 @@
+﻿@model IEnumerable<WebApplication4.Models.Cart>
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-primary">Checkout</h2>
+
+  
+    <div class="card shadow-sm p-4 mt-4">
+        <h4 class="text-center mb-4">Order Summary</h4>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Food Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                  <td class="food-name">@item.foodname</td>
+
+                      td>@item.quantity</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card shadow-sm p-4 mt-4">
+        <h4 class="text-center mb-4">Customer Information</h4>
+        <form method="post" asp-action="ConfirmOrder">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" name="phone" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="address">Delivery Address</label>
+                <textarea name="address" class="form-control" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="paymentMethod">Payment Method</label>
+                <input type="Cash on Delivery" name="Cash on Delivery" class="form-control" placeholder="Cash on Delivery" required />
+                
+                  
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+        </form>
+    </div>
+</div>
+
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+.food-name:empty::before {
+    content: "No Food Name";
+    color: gray;
+    font-style: italic;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.card h4 {
+    color: #8B5A2B;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.table thead th {
+    background-color: #8B5A2B;
+    color: #fff;
+}
+
+.table tfoot td {
+    font-size: 1.2em;
+}
+
+.btn-primary {
+    background-color: #8B5A2B;
+    border-color: #8B5A2B;
+}
+
+.btn-primary:hover {
+    background-color: #6A4028;
+    border-color: #6A4028;
+}
+</style>

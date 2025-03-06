@@ -1,0 +1,126 @@
+﻿@model IEnumerable<WebApplication4.Models.Cart>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container my-5">
+    <h2 class="text-center text-uppercase fw-bold">Shopping Cart</h2>
+
+    <!-- Cart Table -->
+    <div class="table-responsive shadow-sm rounded mt-4">
+        <table class="table table-hover text-center align-middle">
+            <thead>
+                <tr>
+                    <th>Food Name</th>
+                    <th>Quantity</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-light">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@(string.IsNullOrEmpty(item.foodname) ? "No Food Name" : item.foodname)</td>
+                        <td>@item.quantity</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-outline-warning btn-sm px-3 me-2">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-outline-danger btn-sm px-3" onclick="return confirm('Are you sure?');">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+>
+    <div class="d-flex justify-content-center mt-4">
+        <a asp-action="Checkout" class="btn btn-dark btn-lg px-5 py-2 shadow-sm rounded-pill">Proceed to Checkout</a>
+    </div>
+
+   
+    <div class="card mt-5 border-0 shadow-sm">
+        <div class="card-body p-4">
+            <h3 class="card-title text-center text-uppercase fw-bold mb-4">Add Item to Cart</h3>
+            <form method="post" asp-action="AddToCart">
+                <div class="mb-3">
+                    <label for="foodId" class="form-label fw-semibold">Select Food</label>
+                    <select name="foodId" class="form-select form-control-lg rounded-pill" required>
+                        <option value="">-- Select Food --</option>
+                        @foreach (var food in ViewBag.Foods)
+                        {
+                            <option value="@food.Id">@food.foodname</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label fw-semibold">Enter Quantity</label>
+                    <input type="number" name="quantity" class="form-control form-control-lg rounded-pill" min="1" required />
+                </div>
+                <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill shadow">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        background-color: #f8f3ec; /* Soft beige background */
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+        max-width: 900px;
+    }
+
+    h2 {
+        color: #5C4033; /* Coffee Brown */
+    }
+
+    .table {
+        background-color: #fff;
+    }
+
+    .table thead {
+        background-color: #5C4033; /* Coffee Brown */
+        color: white;
+    }
+
+    .btn-dark {
+        background-color: #5C4033; /* Coffee Brown */
+        border-color: #5C4033;
+    }
+
+    .btn-dark:hover {
+        background-color: #3e2c23;
+        border-color: #3e2c23;
+    }
+
+    .card {
+        background-color: #fff;
+        border-radius: 10px;
+    }
+
+    .form-select, .form-control {
+        border: 2px solid #5C4033;
+    }
+
+    .btn-outline-warning {
+        border-color: #d4a76a;
+        color: #d4a76a;
+    }
+
+    .btn-outline-warning:hover {
+        background-color: #d4a76a;
+        color: white;
+    }
+
+    .btn-outline-danger {
+        border-color: #b34d4d;
+        color: #b34d4d;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #b34d4d;
+        color: white;
+    }
+</style>
+

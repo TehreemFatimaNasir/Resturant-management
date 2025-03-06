@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div class="d-flex flex-column align-items-center justify-content-center min-vh-100 text-center">
+    <h1 class="mb-4">Order Confirmation</h1>
+
+    @if (!string.IsNullOrEmpty(ViewBag.OrderSuccess))
+    {
+        <div class="alert alert-success w-50">
+            @ViewBag.OrderSuccess
+        </div>
+    }
+
+    <a asp-controller="Template" asp-action="Index" class="btn btn-primary mt-3">Back to Home</a>
+</div>
+

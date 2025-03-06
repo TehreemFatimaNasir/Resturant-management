@@ -1,0 +1,134 @@
+﻿@model IEnumerable<WebApplication4.Models.Food>
+
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<main class="menu-container">
+    <div class="decorative-box">
+        <h2>Menu</h2>
+        <hr class="line">
+        <hr class="line">
+    </div>
+    <h1>Our Menu</h1>
+    <div class="menu-grid">
+        @foreach (var food in Model)
+        {
+            <div class="menu-item">
+                <h2>@food.foodname</h2>
+                <p class="category">@food.category</p>
+                <p class="price">PKR @food.price</p>
+                <form asp-action="AddToCart" asp-controller="Cart" method="post">
+                    <input type="hidden" name="foodId" value="@food.Id" />
+                    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+                </form>
+            </div>
+        }
+    </div>
+</main>
+
+<style>
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.menu-container {
+    position: relative;
+    margin: 80px auto;
+    padding: 20px;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.decorative-box {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background-color: #fff;
+    border: 2px solid #8B5A2B; /* Coffee brown */
+    padding: 10px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: rotate(45deg);
+    z-index: 10;
+}
+
+.decorative-box h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #8B5A2B;
+    transform: rotate(-45deg);
+}
+
+.line {
+    border: none;
+    border-top: 2px solid #8B5A2B;
+    margin: 5px 0;
+    width: 100%;
+    transform: rotate(-45deg);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #8B5A2B; /* Coffee brown */
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.menu-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+}
+
+.menu-item h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #6A4028;
+}
+
+.category {
+    font-style: italic;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.add-to-cart-btn {
+    background-color: #8B5A2B;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #6A4028;
+}
+</style>

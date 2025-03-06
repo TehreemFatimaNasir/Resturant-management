@@ -1,0 +1,89 @@
+﻿@model WebApplication4.Models.Cart
+
+@{
+    ViewData["Title"] = "Edit";
+}<h1 class="text-center mt-5 mb-4 page-heading">Edit Cart</h1>
+
+<hr />
+
+<div class="container d-flex justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Edit" class="text-white">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+
+            <div class="form-group mb-3">
+                <label asp-for="foodname" class="form-label"></label>
+                <input asp-for="foodname" class="form-control" />
+                <span asp-validation-for="foodname" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="quantity" class="form-label"></label>
+                <input asp-for="quantity" class="form-control" />
+                <span asp-validation-for="quantity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group text-center">
+                <input type="submit" value="Save" class="btn btn-primary w-100" />
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <a asp-action="Index" class="btn btn-outline-light">Back to Cart</a>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        background-color: #f8f3ec; /* Soft beige background */
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .page-heading {
+        color: #5C4033; /* Coffee Brown */
+        font-weight: bold;
+    }
+
+    .container {
+        max-width: 600px;
+    }
+
+    form {
+        background-color: #5C4033; /* Coffee Brown */
+        border-radius: 10px;
+        padding: 25px;
+    }
+
+    .form-label, .control-label {
+        font-weight: 600;
+    }
+
+    .form-control {
+        border: 2px solid #5C4033;
+        border-radius: 8px;
+    }
+
+    .btn-primary {
+        background-color: #5C4033; /* Coffee Brown */
+        border-color: #5C4033;
+    }
+
+        .btn-primary:hover {
+            background-color: #3e2c23;
+            border-color: #3e2c23;
+        }
+
+    .btn-outline-light {
+        border-color: #5C4033;
+        color: #5C4033;
+    }
+
+        .btn-outline-light:hover {
+            background-color: #5C4033;
+            color: white;
+        }
+</style>
+
+
+
