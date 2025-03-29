@@ -1,6 +1,6 @@
-Restaurant Management System
+## **Restaurant Management System**
 
-Key Features
+## **Key Features**
 
 
 Cart Management:
